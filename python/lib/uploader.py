@@ -210,11 +210,6 @@ def upload_file(filepath, root, url, permission, signature, key=None):#TODO , th
 
     '''
     upload_log_filepath=os.path.join(root,".mapillary/log")
-    if not os.path.isdir(os.path.join(root,".mapillary")):
-        os.makedirs(os.path.join(root,".mapillary"))
-    if not os.path.isfile(upload_log_filepath):
-        with open (upload_log_filepath, "w") as jf:
-            json.dump({},jf)
     
     filename = os.path.basename(filepath)
 
@@ -274,6 +269,7 @@ def upload_file(filepath, root, url, permission, signature, key=None):#TODO , th
 
 
 def upload_file_list(file_list, root, file_params=None):
+
     # create upload queue with all files
     q = Queue()
     if file_params==None:
@@ -313,6 +309,14 @@ def update_upload_log(log_filepath, filepath, status):
         upload_log[filepath]["uploading_log"]["uploaded_at"]=time.strftime("%Y:%m:%d %H:%M:%S", time.gmtime())
     with open (log_filepath, "w") as jf:
         json.dump(upload_log, jf)    
+
+def initialize_upload_log(import_root_filepath):
+    upload_log_filepath=os.path.join(import_root_filepath,".mapillary/log")
+    if not os.path.isdir(os.path.join(import_root_filepath,".mapillary")):
+        os.makedirs(os.path.join(import_root_filepath,".mapillary"))
+    if not os.path.isfile(upload_log_filepath):
+        with open (upload_log_filepath, "w") as jf:
+            json.dump({},jf)
 
 def upload_summary(file_list, total_uploads, split_groups, duplicate_groups, missing_groups): #TODO change this, to summarize the upload.log and the processing.log maybe, now only used in upload_wth_preprocessing
     total_success = len([f for f in file_list if 'success' in f])
