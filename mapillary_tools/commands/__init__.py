@@ -11,6 +11,7 @@ from . import process_and_upload
 from . import video_process
 from . import video_process_and_upload
 from . import process_csv
+from . import process_fusion
 from . import authenticate
 from . import interpolate
 
@@ -25,6 +26,7 @@ mapillary_tools_advanced_commands = [
     extract_upload_params,
     exif_insert,
     process_csv,
+    process_fusion,
     authenticate,
     interpolate
 ]
