@@ -23,4 +23,4 @@ import process_csv
 import process_fusion
 import interpolation
 
-VERSION = "0.1.2"
+VERSION = "0.1.4"
