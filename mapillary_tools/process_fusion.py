@@ -5,7 +5,6 @@ import subprocess
 def process_fusion(import_path,
                    front,
                    back,
-                   output,
                    projection,
                    keep_original,
                    verbose):
@@ -17,7 +16,7 @@ def process_fusion(import_path,
 
     for fn_front, fn_back in list:
         print fn_front, fn_back
-        out_file = output + fn_front[len(front):]
+        out_file = import_path + fn_front[len(front):]
         out_file = out_file.replace('GFRNT', '')
         out_dir = os.path.dirname(out_file)
         if not os.path.exists(out_dir):
